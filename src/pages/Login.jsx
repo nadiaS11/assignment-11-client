@@ -13,47 +13,49 @@ import {
 import HeroForm from "../components/HeroForm";
 import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const { signInUser, googleLogin } = useAuth();
+  const { signInUser, googleLogin, user } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
+
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(email, password);
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return alert("Enter a valid email address.");
+      return toast.error("Enter a valid email address.");
     }
     if (!/^(?=.*?[!@#$&*~])(?=.*[A-Z]).{6,}$/.test(password)) {
-      return alert("Password invalid.");
+      return toast.error("Password invalid.");
     }
-    signInUser(email, password)
-      .then((result) => {
-        console.log(result.user);
-        alert("Login successful.");
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((err) => {
-        console.log(err.message);
-        alert(err.message);
-      });
+
+    const toastId = toast.loading("Logging...");
+    try {
+      await signInUser(email, password);
+      console.log(user);
+      toast.success("Login successful.", { id: toastId });
+      navigate(location?.state ? location.state : "/");
+    } catch (err) {
+      console.log(err.message);
+      toast.error(err.message, { id: toastId });
+    }
   };
 
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then((result) => {
-        console.log(result.user);
-        alert("Login by Google successful.");
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((err) => {
-        console.log(err.message);
-        alert(err.message);
-      });
+  const handleGoogleLogin = async () => {
+    try {
+      await googleLogin();
+      console.log(user);
+      toast.success("Login by Google successful.");
+      navigate(location?.state ? location.state : "/");
+    } catch (err) {
+      console.log(err.message);
+      toast.error(err.message);
+    }
   };
   return (
     <HeroForm>
@@ -81,7 +83,7 @@ const Login = () => {
         </form>
 
         <CardFooter className="pt-0">
-          <Button variant="gradient" fullWidth>
+          <Button onClick={handleGoogleLogin} variant="gradient" fullWidth>
             Sign In With Google
           </Button>
           <Typography variant="small" className="mt-6 flex justify-center">

@@ -5,10 +5,18 @@ import {
   Button,
   IconButton,
   Collapse,
+  Avatar,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 function StickyNavbar() {
+  const { user, signOutUser } = useAuth();
+  console.log(user);
+  const handleSignOut = async () => {
+    await signOutUser();
+    console.log("successfully signed out", user);
+  };
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -36,9 +44,9 @@ function StickyNavbar() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/items" className="flex items-center">
-          All Items
-        </a>
+        <NavLink to="/items" className="flex items-center">
+          Menu
+        </NavLink>
       </Typography>
       <Typography
         as="li"
@@ -69,25 +77,29 @@ function StickyNavbar() {
           </div>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
-            <div className="flex items-center gap-x-1">
-              <Link to={"/login"}>
-                <Button
-                  variant="outlined"
-                  size="sm"
-                  className="hidden lg:inline-block"
-                >
-                  <span>Log In</span>
-                </Button>
-              </Link>
-              <Link to={"/register"}>
-                <Button
-                  variant="gradient"
-                  size="sm"
-                  className="hidden lg:inline-block"
-                >
-                  <span>Sign Up</span>
-                </Button>
-              </Link>
+            <div className="flex items-center gap-x-1 ">
+              {!user && (
+                <>
+                  <Link to={"/login"}>
+                    <Button
+                      variant="outlined"
+                      size="sm"
+                      className="hidden lg:inline-block"
+                    >
+                      <span>Log In</span>
+                    </Button>
+                  </Link>
+                  <Link to={"/register"}>
+                    <Button
+                      variant="gradient"
+                      size="sm"
+                      className="hidden lg:inline-block"
+                    >
+                      <span>Sign Up</span>
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
             <IconButton
               variant="text"
@@ -126,21 +138,44 @@ function StickyNavbar() {
                 </svg>
               )}
             </IconButton>
+            {user?.email && (
+              <>
+                <Avatar
+                  variant="circular"
+                  size="md"
+                  className="border border-gray-900 p-0.5"
+                  src={
+                    user?.photoURL
+                      ? user.photoURL
+                      : "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                  }
+                />
+                <Link to={"/login"} className=" ">
+                  <Button onClick={handleSignOut} variant="outlined" size="sm">
+                    <span>Sign Out</span>
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
         <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
-            <Link to={"/login"} className="w-full">
-              <Button fullWidth variant="outlined" size="sm" className="">
-                <span>Sign In</span>
-              </Button>
-            </Link>
-            <Link to={"/register"} className="w-full">
-              <Button fullWidth variant="gradient" size="sm" className="">
-                <span>Sign Up</span>
-              </Button>
-            </Link>
+            {!user && (
+              <>
+                <Link to={"/login"} className="w-full">
+                  <Button fullWidth variant="outlined" size="sm" className="">
+                    <span>Sign In</span>
+                  </Button>
+                </Link>
+                <Link to={"/register"} className="w-full">
+                  <Button fullWidth variant="gradient" size="sm" className="">
+                    <span>Sign Up</span>
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         </Collapse>
       </Navbar>

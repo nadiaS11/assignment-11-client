@@ -5,6 +5,7 @@ import "./index.css";
 import router from "./routes/Router";
 import { ThemeProvider } from "@material-tailwind/react";
 import AuthProvider from "./auths/AuthProvider";
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -13,5 +14,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <RouterProvider router={router} />
       </AuthProvider>
     </ThemeProvider>
+    <Toaster />
   </React.StrictMode>
 );
