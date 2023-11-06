@@ -14,8 +14,10 @@ import HeroForm from "../components/HeroForm";
 import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import useAxios from "../hooks/useAxios";
 
 const Login = () => {
+  const myAxios = useAxios();
   const { signInUser, googleLogin, user } = useAuth();
 
   const location = useLocation();
@@ -36,8 +38,11 @@ const Login = () => {
 
     const toastId = toast.loading("Logging...");
     try {
-      await signInUser(email, password);
-      console.log(user);
+      const user = await signInUser(email, password);
+      const res = await myAxios.post("/auth/access-token", {
+        email: user.user.email,
+      });
+      console.log(res);
       toast.success("Login successful.", { id: toastId });
       navigate(location?.state ? location.state : "/");
     } catch (err) {

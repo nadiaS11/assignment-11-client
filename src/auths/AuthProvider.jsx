@@ -12,11 +12,11 @@ import { auth } from "./firebase.config";
 import useAxios from "../hooks/useAxios";
 
 export const AuthContext = createContext();
-
 const AuthProvider = ({ children }) => {
-  const myAxios = useAxios();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const myAxios = useAxios();
+
   const googleProvider = new GoogleAuthProvider();
 
   const googleLogin = () => {
@@ -39,8 +39,21 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const subscribe = onAuthStateChanged(auth, (currentUser) => {
+    const subscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        try {
+          const email = currentUser.email;
+
+          // Send a request to verify the access token
+          const res = await myAxios.post("/auth/access-token", {
+            email: email,
+          });
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
       setUser(currentUser);
+
       setLoading(false);
     });
     return () => {

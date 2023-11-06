@@ -15,9 +15,11 @@ import { auth } from "../auths/firebase.config";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import useAxios from "../hooks/useAxios";
 const Register = () => {
   const navigate = useNavigate();
-  const { createUser, googleLogin, user } = useAuth();
+  const { createUser, googleLogin } = useAuth();
+  const myAxios = useAxios();
 
   const handleGoogleLogin = () => {
     googleLogin()
@@ -46,8 +48,11 @@ const Register = () => {
     }
 
     try {
-      await createUser(email, password);
-      console.log(user);
+      const user = await createUser(email, password);
+      const res = await myAxios.post("/auth/access-token", {
+        email: user.user.email,
+      });
+      console.log(res);
       toast.success("Successfully registered.");
       await updateProfile(auth.currentUser, {
         displayName: name,
