@@ -6,14 +6,18 @@ import router from "./routes/Routes";
 import { ThemeProvider } from "@material-tailwind/react";
 import AuthProvider from "./auths/AuthProvider";
 import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </ThemeProvider>
-    <Toaster />
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </ThemeProvider>
+      <Toaster />
+    </QueryClientProvider>
   </React.StrictMode>
 );
