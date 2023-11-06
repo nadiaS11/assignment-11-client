@@ -44,7 +44,7 @@ function StickyNavbar() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <NavLink to="/items" className="flex items-center">
+        <NavLink to="/menu" className="flex items-center">
           Menu
         </NavLink>
       </Typography>
