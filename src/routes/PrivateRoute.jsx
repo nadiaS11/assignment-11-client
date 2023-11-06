@@ -9,7 +9,11 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <Spinner className="h-16 w-16 text-gray-900/50 mx-auto" />;
+    return (
+      <div className="mt-40">
+        <Spinner className="h-16 w-16 text-gray-900/50 mx-auto " />
+      </div>
+    );
   }
 
   if (!loading && !user?.email) {

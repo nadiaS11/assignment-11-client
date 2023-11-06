@@ -6,6 +6,8 @@ import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import Blog from "../pages/Blog";
 import Menu from "../pages/Menu";
+import Details from "../pages/Details";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,16 @@ const router = createBrowserRouter([
             <Blog></Blog>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/:id",
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          axios.get(`http://localhost:5000/api/v1/foods/${params.id}`),
       },
       {
         path: "/menu",

@@ -9,10 +9,12 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "./firebase.config";
+import useAxios from "../hooks/useAxios";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const myAxios = useAxios();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
