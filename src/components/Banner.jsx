@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
+import GetAllfoods from "./../utils/GetAllfoods";
+import { useEffect, useState } from "react";
 
-const Banner = ({ children }) => {
+const Banner = ({ children, handleSearch, setSearch }) => {
+  const [searchInput, setSearchInput] = useState("");
+
   const location = useLocation();
   return (
     <div className="relative ]">
@@ -55,20 +59,22 @@ const Banner = ({ children }) => {
             )}
             {location.pathname === "/menu" ? (
               <>
-                <form className="flex flex-col gap-5 md:gap-2 items-center w-full mt-20 md:flex-row md:px-16">
+                <div className="flex flex-col gap-5 md:gap-2 items-center w-full mt-20 md:flex-row md:px-16">
                   <input
+                    onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search foods..."
                     type="text"
                     className="flex-grow w-full h-12 px-4   text-white transition duration-200 bg-transparent border-2 border-gray-400 rounded-lg appearance-none   "
                   />
 
                   <button
+                    onClick={handleSearch}
                     type="submit"
-                    className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                    className="inline-flex items-center border-2 justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-lg  shadow-md md:w-auto hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                   >
-                    Subscribe
+                    Search
                   </button>
-                </form>
+                </div>
               </>
             ) : (
               ""

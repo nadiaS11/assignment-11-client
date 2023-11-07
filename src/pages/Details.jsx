@@ -18,7 +18,7 @@ const Details = () => {
   } = data;
 
   return (
-    <section className="my-40 md:mt-32  ">
+    <section className="my-40 md:mt-40  ">
       <div className="container mx-auto px-4">
         <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
           <div className="lg:col-span-3 lg:row-end-1">

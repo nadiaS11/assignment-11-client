@@ -59,7 +59,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       return subscribe(); //clean up function
     };
-  }, []);
+  }, [myAxios]);
 
   const authInfo = {
     user,
