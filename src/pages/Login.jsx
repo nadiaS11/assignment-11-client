@@ -18,7 +18,7 @@ import useAxios from "../hooks/useAxios";
 
 const Login = () => {
   const myAxios = useAxios();
-  const { signInUser, googleLogin, user } = useAuth();
+  const { signInUser, googleLogin } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -42,6 +42,7 @@ const Login = () => {
       const res = await myAxios.post("/auth/access-token", {
         email: user.user.email,
       });
+
       console.log(res);
       toast.success("Login successful.", { id: toastId });
       navigate(location?.state ? location.state : "/");
@@ -53,9 +54,16 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await googleLogin();
-      console.log(user);
+      const googleUser = await googleLogin();
+
       toast.success("Login by Google successful.");
+      // const userInfo = await myAxios.post("/users", {
+      //   name: googleUser.user.displayName,
+      //   email: googleUser.user.email,
+      //   photoUrl: googleUser.user.photoURL,
+      // });
+      // console.log(userInfo);
+
       navigate(location?.state ? location.state : "/");
     } catch (err) {
       console.log(err.message);

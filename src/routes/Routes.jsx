@@ -8,6 +8,8 @@ import Blog from "../pages/Blog";
 import Menu from "../pages/Menu";
 import Details from "../pages/Details";
 import axios from "axios";
+import FoodPurchase from "../pages/FoodPurchase";
+import MyProfile from "./MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,22 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Blog></Blog>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/purchase/:id",
+        element: (
+          <PrivateRoute>
+            <FoodPurchase></FoodPurchase>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
           </PrivateRoute>
         ),
       },

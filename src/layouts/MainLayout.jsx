@@ -8,7 +8,7 @@ const MainLayout = (props) => {
   return (
     <div>
       <StickyNavbar></StickyNavbar>
-      <div className="min-h-screen">
+      <div className="min-h-[80vh]">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

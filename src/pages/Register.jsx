@@ -52,7 +52,12 @@ const Register = () => {
       const res = await myAxios.post("/auth/access-token", {
         email: user.user.email,
       });
-      console.log(res);
+      const userInfo = await myAxios.post("/users", {
+        name: name,
+        email: email,
+        photoUrl: photoUrl,
+      });
+      console.log(userInfo);
       toast.success("Successfully registered.");
       await updateProfile(auth.currentUser, {
         displayName: name,

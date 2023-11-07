@@ -18,6 +18,7 @@ function StickyNavbar() {
     console.log("successfully signed out", user);
   };
   const [openNav, setOpenNav] = React.useState(false);
+  const [openProfile, setOpenProfile] = React.useState(false);
 
   React.useEffect(() => {
     window.addEventListener(
@@ -58,6 +59,18 @@ function StickyNavbar() {
           Blog
         </a>
       </Typography>
+      {user?.email && (
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-normal"
+        >
+          <a href="/profile" className="flex items-center">
+            My Profile
+          </a>
+        </Typography>
+      )}
     </ul>
   );
 
@@ -140,16 +153,19 @@ function StickyNavbar() {
             </IconButton>
             {user?.email && (
               <>
-                <Avatar
-                  variant="circular"
-                  size="md"
-                  className="border border-gray-900 p-0.5"
-                  src={
-                    user?.photoURL
-                      ? user.photoURL
-                      : "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-                  }
-                />
+                <div className="relative">
+                  <Avatar
+                    onClick={() => setOpenProfile(!openProfile)}
+                    variant="circular"
+                    size="md"
+                    className="border border-gray-900 p-0.5"
+                    src={
+                      user?.photoURL
+                        ? user.photoURL
+                        : "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                    }
+                  />
+                </div>
                 <Link to={"/login"} className=" ">
                   <Button onClick={handleSignOut} variant="outlined" size="sm">
                     <span>Sign Out</span>

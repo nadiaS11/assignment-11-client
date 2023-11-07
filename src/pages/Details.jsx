@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const Details = () => {
   const { data } = useLoaderData();
@@ -97,7 +97,8 @@ const Details = () => {
                 <span className="text-base">/serving</span>
               </div>
 
-              <button
+              <Link
+                to={`/purchase/${_id}`}
                 type="button"
                 className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
               >
@@ -116,7 +117,7 @@ const Details = () => {
                   />
                 </svg>
                 Add to cart
-              </button>
+              </Link>
             </div>
 
             <ul className="mt-8 space-y-2">
