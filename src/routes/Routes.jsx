@@ -9,7 +9,6 @@ import Menu from "../pages/Menu";
 import Details from "../pages/Details";
 import axios from "axios";
 import FoodPurchase from "../pages/FoodPurchase";
-import MyProfile from "./MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -37,12 +36,16 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/profile",
-        element: (
-          <PrivateRoute>
-            <MyProfile></MyProfile>
-          </PrivateRoute>
-        ),
+        path: "/my-added-food",
+        element: <PrivateRoute></PrivateRoute>,
+      },
+      {
+        path: "/add-food",
+        element: <PrivateRoute></PrivateRoute>,
+      },
+      {
+        path: "/my-orders",
+        element: <PrivateRoute></PrivateRoute>,
       },
       {
         path: "/:id",
