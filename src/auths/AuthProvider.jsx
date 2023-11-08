@@ -40,9 +40,12 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const subscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(currentUser);
+
+      setLoading(false);
       if (currentUser) {
         try {
-          const email = currentUser.email;
+          const email = auth.currentUser.email;
 
           // Send a request to verify the access token
           const res = await myAxios.post("/auth/access-token", {
@@ -52,9 +55,6 @@ const AuthProvider = ({ children }) => {
           console.log(error.message);
         }
       }
-      setUser(currentUser);
-
-      setLoading(false);
     });
     return () => {
       return subscribe(); //clean up function

@@ -15,19 +15,21 @@ import {
   InboxArrowDownIcon,
 } from "@heroicons/react/24/solid";
 import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 // profile menu component
 const profileMenuItems = [
+  {
+    label: "Add A Food",
+    icon: Cog6ToothIcon,
+    link: "/add-a-food",
+  },
   {
     label: "My Added Food",
     icon: UserCircleIcon,
     link: "/my-added-food",
   },
-  {
-    label: "Add Food",
-    icon: Cog6ToothIcon,
-    lik: "/add-food",
-  },
+
   {
     label: "My Orders",
     icon: InboxArrowDownIcon,
@@ -79,31 +81,25 @@ function ProfileMenu() {
       </MenuHandler>
       <MenuList className="p-1">
         {profileMenuItems.map(({ label, icon, link }, key) => {
-          const isLastItem = key === profileMenuItems.length - 1;
           return (
-            <MenuItem
-              key={label}
-              onClick={closeMenu}
-              className={`flex items-center gap-2 rounded ${
-                isLastItem
-                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                  : ""
-              }`}
-            >
-              {React.createElement(icon, {
-                className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
-                strokeWidth: 2,
-              })}
-              <Typography
-                as="a"
-                href={link}
-                variant="small"
-                className="font-normal"
-                color={isLastItem ? "red" : "inherit"}
+            <Link key={key} to={link}>
+              <MenuItem
+                onClick={closeMenu}
+                className={`flex items-center gap-2 rounded `}
               >
-                {label}
-              </Typography>
-            </MenuItem>
+                {React.createElement(icon, {
+                  className: `h-4 w-4 `,
+                  strokeWidth: 2,
+                })}
+                <Typography
+                  variant="small"
+                  className="font-normal"
+                  color={"inherit"}
+                >
+                  {label}
+                </Typography>
+              </MenuItem>
+            </Link>
           );
         })}
       </MenuList>

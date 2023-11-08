@@ -19,7 +19,6 @@ function StickyNavbar() {
     console.log("successfully signed out", user);
   };
   const [openNav, setOpenNav] = React.useState(false);
-  const [openProfile, setOpenProfile] = React.useState(false);
 
   React.useEffect(() => {
     window.addEventListener(
@@ -60,7 +59,7 @@ function StickyNavbar() {
           Blog
         </a>
       </Typography>
-      {user?.email && (
+      {/* {user?.email && (
         <Typography
           as="li"
           variant="small"
@@ -71,7 +70,7 @@ function StickyNavbar() {
             My Profile
           </a>
         </Typography>
-      )}
+      )} */}
     </ul>
   );
 

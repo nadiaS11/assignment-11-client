@@ -9,6 +9,9 @@ import Menu from "../pages/Menu";
 import Details from "../pages/Details";
 import axios from "axios";
 import FoodPurchase from "../pages/FoodPurchase";
+import MyAddedFood from "./../pages/profile_pages/MyAddedFood";
+import AddFood from "./../pages/profile_pages/AddFood";
+import MyOrderedFood from "./../pages/profile_pages/MyOrderedFood";
 
 const router = createBrowserRouter([
   {
@@ -37,15 +40,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-added-food",
-        element: <PrivateRoute></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyAddedFood></MyAddedFood>
+          </PrivateRoute>
+        ),
       },
       {
-        path: "/add-food",
-        element: <PrivateRoute></PrivateRoute>,
+        path: "/add-a-food",
+        element: (
+          <PrivateRoute>
+            <AddFood></AddFood>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-orders",
-        element: <PrivateRoute></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyOrderedFood></MyOrderedFood>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/:id",
@@ -55,7 +70,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          axios.get(`http://localhost:5000/api/v1/foods/${params.id}`),
+          axios.get(
+            `https://namkeen-server.vercel.app/api/v1/foods/${params.id}`
+          ),
       },
       {
         path: "/menu",
