@@ -83,7 +83,7 @@ function StickyNavbar() {
             <Typography
               as="a"
               href="/"
-              className="ml-4 cursor-pointer py-1.5 font-bold text-2xl"
+              className="ml-4  cursor-pointer py-1.5 font-semibold md:font-bold md:text-2xl"
             >
               N A A M K E E N
             </Typography>
@@ -155,7 +155,12 @@ function StickyNavbar() {
               <>
                 <ComplexNavbar></ComplexNavbar>
                 <Link to={"/login"} className=" ">
-                  <Button onClick={handleSignOut} variant="outlined" size="sm">
+                  <Button
+                    onClick={handleSignOut}
+                    variant="outlined"
+                    size="sm"
+                    className="p-1 md:p-2"
+                  >
                     <span>Sign Out</span>
                   </Button>
                 </Link>

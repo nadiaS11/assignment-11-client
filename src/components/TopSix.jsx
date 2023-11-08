@@ -4,6 +4,7 @@ import axios from "axios";
 import FoodCard from "./FoodCard";
 import GetAllfoods from "../utils/GetAllfoods";
 import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const TopSix = (props) => {
   const foods = GetAllfoods();
@@ -28,12 +29,14 @@ const TopSix = (props) => {
         ))}
       </div>
       <div className="text-center ">
-        <Button
-          ripple={false}
-          className="my-10 text-center bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-        >
-          See All
-        </Button>
+        <Link to={"/menu"}>
+          <Button
+            ripple={false}
+            className="my-10 text-center bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+          >
+            See All
+          </Button>
+        </Link>
       </div>
     </div>
   );

@@ -57,12 +57,16 @@ const Login = () => {
       const googleUser = await googleLogin();
 
       toast.success("Login by Google successful.");
-      // const userInfo = await myAxios.post("/users", {
-      //   name: googleUser.user.displayName,
-      //   email: googleUser.user.email,
-      //   photoUrl: googleUser.user.photoURL,
-      // });
-      // console.log(userInfo);
+      const res = await myAxios.post("/auth/access-token", {
+        email: googleUser.user.email,
+      });
+      console.log(res);
+      const userInfo = await myAxios.post("/users", {
+        name: googleUser.user.displayName,
+        email: googleUser.user.email,
+        photoUrl: googleUser.user.photoURL,
+      });
+      console.log(userInfo);
 
       navigate(location?.state ? location.state : "/");
     } catch (err) {

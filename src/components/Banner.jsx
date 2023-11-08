@@ -11,7 +11,7 @@ const Banner = ({ children, handleSearch, setSearch }) => {
     <div className="relative ]">
       {children}
 
-      <div className="relative  bg-opacity-70 bg-gray-900 h-[80vh]">
+      <div className="relative  bg-opacity-60 bg-gray-900 h-[80vh]">
         <div className="absolute inset-x-0 bottom-0">
           <svg
             viewBox="0 0 224 12"
