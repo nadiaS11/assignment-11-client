@@ -9,13 +9,14 @@ const MyAddedFood = () => {
   const { user } = useAuth();
   const myAxios = useAxios();
 
-  const { data: foods } = useQuery({
+  const { data } = useQuery({
     queryKey: ["foods"],
     queryFn: async () => {
-      const res = await myAxios.get(`/foods/added-by?useremail=${user?.email}`);
+      const res = await myAxios.get(`/user/added-foods?email=${user?.email}`);
       return res;
     },
   });
+  console.log(data);
 
   return (
     <div className="min-h-screen mx-auto">

@@ -98,7 +98,7 @@ const Blog = () => {
                   organized like SQL. In MySQL, the data has to be organized in
                   a proper structural way and has to be labelled accordingly.
                   Which one you choose depends on how messy or organized you
-                  want your data to be and what kind of projects you're working
+                  want your data to be and what kind of projects you are working
                   on. MongoDB gives you more flexibility than MySQL which is
                   widely used in critical developments related to transactions
                   related platform such as e-commerce.

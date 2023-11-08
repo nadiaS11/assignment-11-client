@@ -29,7 +29,7 @@ const AddFood = () => {
   const { mutate } = useMutation({
     mutationKey: ["food"],
     mutationFn: (foodData) => {
-      return axios.post("/foods/added-by", foodData);
+      return axios.post("/user/add-food", foodData);
     },
     onSuccess: () => {
       toast.success("Thanks for your contributing.");

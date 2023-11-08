@@ -39,7 +39,7 @@ const Banner = ({ children, handleSearch, setSearch }) => {
                 </p>
 
                 <Link
-                  aria-label="Scroll down"
+                  to={"/menu"}
                   className="flex mt-10 items-center justify-evenly w-28 h-10 mx-auto text-white duration-300 transform border border-gray-400 rounded-full hover:shadow hover:scale-110"
                 >
                   <svg
