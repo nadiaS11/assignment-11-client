@@ -12,7 +12,7 @@ const MyOrderedFood = () => {
 
   const queryClient = useQueryClient();
 
-  const { data: orders, isError } = useQuery({
+  const { data: orders } = useQuery({
     queryKey: ["orders"],
     queryFn: async () => {
       const res = await axios.get(`/user/orders?email=${user?.email}`);

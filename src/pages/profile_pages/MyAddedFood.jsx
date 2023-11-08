@@ -7,16 +7,15 @@ import useAxios from "../../hooks/useAxios";
 
 const MyAddedFood = () => {
   const { user } = useAuth();
-  const axios = useAxios();
+  const myAxios = useAxios();
 
   const { data: foods } = useQuery({
     queryKey: ["foods"],
     queryFn: async () => {
-      const res = await axios.get(`/foods/added-by?useremail=${user?.email}`);
+      const res = await myAxios.get(`/foods/added-by?useremail=${user?.email}`);
       return res;
     },
   });
-  console.log(foods);
 
   return (
     <div className="min-h-screen mx-auto">
