@@ -8,7 +8,7 @@ const GetAllfoods = () => {
   useEffect(() => {
     axios
       .get(
-        `https://namkeen-server.vercel.app/api/v1/foods?sortField=orderamount&sortOrder=desc`
+        `http://localhost:5000/api/v1/foods?category=foodcategory&sortField=orderamount&sortOrder=desc`
       )
       .then((res) => {
         // console.log(res.data);

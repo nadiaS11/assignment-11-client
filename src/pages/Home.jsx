@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Banner from "./../components/Banner";
 import TopSix from "./../components/TopSix";
@@ -19,9 +19,9 @@ const Home = () => {
           alt=""
         />
       </Banner>
-      <TopSix></TopSix>
-      <div>
-        <CategoryButtons></CategoryButtons>
+
+      <div className=" ">
+        <TopSix></TopSix>
       </div>
       <Contact></Contact>
     </div>

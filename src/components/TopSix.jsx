@@ -5,26 +5,30 @@ import FoodCard from "./FoodCard";
 import GetAllfoods from "../utils/GetAllfoods";
 import { Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import CategoryButtons from "./CategoryButtons";
 
-const TopSix = (props) => {
+const TopSix = () => {
   const foods = GetAllfoods();
-  // const [foods, setFoods] = useState();
+  const [allFoods, setAllFoods] = useState([]);
+  const handleCategory = (word) => {
+    const lowerWord = word.toLowerCase();
+    const filtered = foods.filter(
+      (food) =>
+        food.foodname.toLowerCase().includes(lowerWord) ||
+        food.foodcategory.toLowerCase().includes(lowerWord)
+    );
+    setAllFoods(filtered);
+  };
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `https://namkeen-server.vercel.app/api/v1/foods?sortField=orderamount&sortOrder=desc`
-  //     )
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setFoods(res.data);
-  //     });
-  // }, [foods, setFoods]);
+  useEffect(() => {
+    setAllFoods(foods);
+  }, [foods]);
 
   return (
     <div className="mx-auto ">
+      <CategoryButtons handleCategory={handleCategory}></CategoryButtons>
       <div className="grid md:grid-cols-2  lg:grid-cols-3 gap-16 mx-auto px-2 mt-20">
-        {foods?.slice(0, 6).map((food) => (
+        {allFoods?.slice(0, 6).map((food) => (
           <FoodCard key={food._id} food={food}></FoodCard>
         ))}
       </div>
