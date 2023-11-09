@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { auth } from "../auths/firebase.config";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000/api/v1",
+  baseURL: "https://namkeen-server.vercel.app/api/v1",
   withCredentials: true,
 });
 

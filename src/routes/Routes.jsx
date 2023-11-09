@@ -77,7 +77,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          axios.get(`http://localhost:5000/api/v1/foods/${params.id}`),
+          axios.get(
+            `https://namkeen-server.vercel.app/api/v1/foods/${params.id}`
+          ),
       },
       {
         path: "/menu",
