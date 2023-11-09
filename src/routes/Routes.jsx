@@ -13,6 +13,7 @@ import MyAddedFood from "./../pages/profile_pages/MyAddedFood";
 import AddFood from "./../pages/profile_pages/AddFood";
 import MyOrderedFood from "./../pages/profile_pages/MyOrderedFood";
 import ErrorPage from "../pages/ErrorPage";
+import Update from "./../pages/profile_pages/UpdateAddedFood";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: (
-          <PrivateRoute>
-            <Blog></Blog>
-          </PrivateRoute>
-        ),
+        element: <Blog></Blog>,
       },
       {
         path: "/purchase/:id",
@@ -45,6 +42,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyAddedFood></MyAddedFood>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <Update></Update>
           </PrivateRoute>
         ),
       },

@@ -4,6 +4,8 @@ import Banner from "./../../components/Banner";
 import useAuth from "../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
+import { Link } from "react-router-dom";
+import { Button } from "@material-tailwind/react";
 
 const MyAddedFood = () => {
   const { user } = useAuth();
@@ -12,7 +14,9 @@ const MyAddedFood = () => {
   const { data } = useQuery({
     queryKey: ["foods"],
     queryFn: async () => {
-      const res = await myAxios.get(`/user/added-foods?email=${user?.email}`);
+      const res = await myAxios.get(
+        `/user/added-foods?useremail=${user?.email}`
+      );
       return res;
     },
   });
@@ -47,48 +51,56 @@ const MyAddedFood = () => {
           </p>
         </div>
         {/* <!-- /Heading --> */}
-        <div className="grid gap-8 sm:grid-cols-2 sm:gap-12 lg:grid-cols-2 xl:grid-cols-2 xl:gap-16 ">
+        <div className="grid gap-8 sm:grid-cols-2 sm:gap-12 lg:grid-cols-2 xl:grid-cols-2 xl:gap-16 container mx-auto">
           {/* food */}
-          <article className="flex flex-col  gap-4 md:flex-row lg:gap-6">
-            <a
-              href="#"
-              className="group relative block h-56 w-full shrink-0 self-start overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-24 md:w-24 lg:h-40 lg:w-40"
+          {data?.data?.map((food) => (
+            <article
+              key={food._id}
+              className="flex flex-col mx-auto gap-4 md:flex-row lg:gap-6"
             >
-              <img
-                src="https://images.unsplash.com/photo-1476362555312-ab9e108a0b7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                loading="lazy"
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-              />
-            </a>
+              <a className="group relative block h-56 w-72 shrink-0 self-start overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-32  md:w-32 lg:h-40 lg:w-40">
+                <img
+                  src={food?.foodimage}
+                  loading="lazy"
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+              </a>
 
-            <div className="flex flex-col gap-2">
-              {/* <span className="text-sm text-gray-400">April 2, 2022</span> */}
+              <div className="flex flex-col gap-2">
+                {/* <span className="text-sm text-gray-400">April 2, 2022</span> */}
 
-              <h2 className="text-xl font-bold text-gray-800">
-                <a
-                  href="#"
-                  className="transition duration-100 hover:text-rose-500 active:text-rose-600"
+                <h2 className="text-xl font-bold text-gray-800">
+                  <a
+                    href="#"
+                    className="transition duration-100 hover:text-rose-500 active:text-rose-600"
+                  >
+                    {food?.foodname}
+                  </a>
+                </h2>
+
+                <div
+                  className="flex
+                justify-between items-center"
                 >
-                  The Pines and the Mountains
-                </a>
-              </h2>
+                  <p className="text-gray-500">{food?.foodcategory}</p>
+                  <p className="text-gray-900    font-bold text-2xl">
+                    ${food?.price}
+                  </p>
+                </div>
 
-              <p className="text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint
-                necessitatibus molestias explicabo.
-              </p>
-
-              <div>
-                <a
-                  href="#"
-                  className="font-semibold text-rose-500 transition duration-100 hover:text-rose-600 active:text-rose-700"
-                >
-                  Read more
-                </a>
+                <Link to={`/update/${food._id}`}>
+                  <Button
+                    variant="outlined"
+                    ripple={true}
+                    className="font-semibold text-rose-500 transition duration-100 hover:bg-[#f8f6c5] active:text-rose-700 px-2 py-1"
+                  >
+                    Update
+                  </Button>
+                </Link>
               </div>
-            </div>
-          </article>
+            </article>
+          ))}
         </div>
       </div>
 

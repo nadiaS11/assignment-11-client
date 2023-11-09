@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Banner from "./../components/Banner";
 import TopSix from "./../components/TopSix";
 import { Link } from "react-router-dom";
+import CategoryButtons from "./../components/CategoryButtons";
 
 const Home = () => {
   return (
@@ -18,6 +19,9 @@ const Home = () => {
         />
       </Banner>
       <TopSix></TopSix>
+      <div>
+        <CategoryButtons></CategoryButtons>
+      </div>
     </div>
   );
 };
