@@ -4,6 +4,7 @@ import Banner from "./../components/Banner";
 import TopSix from "./../components/TopSix";
 import { Link } from "react-router-dom";
 import CategoryButtons from "./../components/CategoryButtons";
+import Contact from "./../components/Contact";
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
       <div>
         <CategoryButtons></CategoryButtons>
       </div>
+      <Contact></Contact>
     </div>
   );
 };
