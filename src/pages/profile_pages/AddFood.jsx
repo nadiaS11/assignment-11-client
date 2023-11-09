@@ -223,7 +223,7 @@ const AddFood = () => {
               })
             }
           >
-            Order Food
+            Add Food
           </button>
         </form>
       </div>
