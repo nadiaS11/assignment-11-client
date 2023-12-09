@@ -1,8 +1,13 @@
-# React + Vite
+# NAAMKEEN
+### :fork_and_knife: This is a Restaurant Management Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- **Description:** A dynamic Restaurant Management Website for users can see and order food Items, and add, delete, or modify a food item. Users also have their foodie profiles to show all their food posts.
 
-Currently, two official plugins are available:
+- **Technologies Used:**
+  - Frontend: JavaScript, React.js, Tailwind CSS
+  - Backend: Node.js, Express.js
+  - Database: MongoDB
+  - Authentication: Firebase Authentication with JWT set at cookies
+- [Client Site](https://github.com/nadiaS11/namkeen-project-client-side) - [Server Site](https://github.com/nadiaS11/assignment-11-server) - [Live Demo](https://namkeen-project.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ 
